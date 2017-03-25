@@ -1,0 +1,19 @@
+{
+  "name": "node-raspi-pico-watcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidtw/node-raspi-pico-watcher.git"
+  },
+  "author": "David Twigger <davidtwigger@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidtw/node-raspi-pico-watcher/issues"
+  },
+  "homepage": "https://github.com/davidtw/node-raspi-pico-watcher#readme"
+}

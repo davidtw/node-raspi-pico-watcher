@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/davidtw/node-raspi-pico-watcher/issues"
   },
-  "homepage": "https://github.com/davidtw/node-raspi-pico-watcher#readme"
+  "homepage": "https://github.com/davidtw/node-raspi-pico-watcher#readme",
+  "dependencies": {
+    "node-raspi-pico-ups": "^1.0.2"
+  }
 }

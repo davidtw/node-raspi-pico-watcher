@@ -1,8 +1,9 @@
-const pico = require('node-raspi-pico-ups');
+const pico = require('node-raspi-pico-ups').pico;
 
-let currentMode = pico.pico.getCurrentPowerMode();
+let currentMode = pico.getCurrentPowerMode();
+console.log('Starting loop', currentMode);
 let interval = setInterval(() => {
-    let newMode = pico.pico.getCurrentPowerMode();
+    let newMode = pico.getCurrentPowerMode();
     if(newMode !== currentMode && newMode === 2) {
         console.log('Battery mode....');
     } else if(newMode !== currentMode) {

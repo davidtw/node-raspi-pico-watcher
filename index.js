@@ -1,7 +1,7 @@
 const pico = require('node-raspi-pico-ups').pico;
 const exec = require('child_process').exec;
 
-const config = require('contacts.json');
+const config = require('./contacts.json');
 
 const intervalTime = 500;
 

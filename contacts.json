@@ -1,0 +1,22 @@
+{
+  "messages": {
+    "fr": {
+      "powerDown": "Le courrant a été coupé!! sauvez le frigo magique!!!",
+      "powerUp": "Le courrant a été rétabli!"
+    },
+    "en": {
+      "powerDown": "Power down, family unite!! save the magical fridge!!",
+      "powerUp": "Power is back"
+    }
+  },
+  "contacts": [
+    {
+      "number": "0033673128710",
+      "lang": "en"
+    },
+    {
+      "number": "0033673128710",
+      "lang": "fr"
+    }
+  ]
+}

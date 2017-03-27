@@ -21,7 +21,7 @@ function sendMessageToContacts(messageCode) {
                 message = iconv.convert(message).toString();
                 let cmd = 'gammu sendsms TEXT ' + contact.number + ' -text "' + message + '"';
                 console.log('cmd', cmd);
-                return executor(cmd, 2);
+                return queue.add(executor(cmd, 2));
             } else {
                 return Promise.reject('No contacts');
             }
@@ -35,7 +35,7 @@ function loop() {
         if (newMode === 2) {
             console.log('Battery mode....');
             clearInterval(interval);
-            queue.add(sendMessageToContacts('powerDown'))
+            sendMessageToContacts('powerDown')
                 .then(() => {
                     interval = setInterval(loop, intervalTime);
                     return interal;
@@ -43,7 +43,7 @@ function loop() {
                 .catch((err) => console.error(err));
         } else if (newMode !== currentMode) {
             console.log('Power back on...');
-            queue.add(sendMessageToContacts('powerUp'))
+            sendMessageToContacts('powerUp')
                 .then(() => {
                     interval = setInterval(loop, intervalTime);
                     return interal;

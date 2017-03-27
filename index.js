@@ -34,20 +34,16 @@ function loop() {
     if (newMode !== currentMode) {
         if (newMode === 2) {
             console.log('Battery mode....');
-            clearInterval(interval);
+            // clearInterval(interval);
             sendMessageToContacts('powerDown')
-                .then(() => startListening())
                 .catch((err) => {
                     console.error(err);
-                    startListening();
                 });
         } else if (newMode !== currentMode) {
             console.log('Power back on...');
             sendMessageToContacts('powerUp')
-                .then(() => startListening())
                 .catch((err) => {
                     console.error(err);
-                    startListening();
                 });
         }
         currentMode = newMode;

@@ -2,11 +2,13 @@
   "messages": {
     "fr": {
       "powerDown": "Le courrant a été coupé!! sauvez le frigo magique!!!",
-      "powerUp": "Le courrant a été rétabli!"
+      "powerUp": "Le courrant a été rétabli!",
+      "start": "En attente..."
     },
     "en": {
       "powerDown": "Power down, family unite!! save the magical fridge!!",
-      "powerUp": "Power is back"
+      "powerUp": "Power is back",
+      "start": "Listening..."
     }
   },
   "contacts": [

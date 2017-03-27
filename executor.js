@@ -13,11 +13,12 @@ module.exports = (function executor(cmd, retries, tries) {
             }
         });
     });
-    return p.catch(() => {
+    return p.catch((error) => {
         if(tries < retries) {
             return executor(cmd, retries, tries);
         } else {
+            console.error(error);
             throw new Error('Failed after ' + retries + ' retries');
         }
     });
-}());
+});

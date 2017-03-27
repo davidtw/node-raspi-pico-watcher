@@ -18,7 +18,6 @@ function sendMessageToContacts(messageCode) {
         contacts.forEach((contact) => {
             if(config['messages'][contact.lang] && config['messages'][contact.lang][messageCode]) {
                 let message = config['messages'][contact.lang][messageCode];
-                message = iconv.convert(message).toString();
                 let cmd = 'gammu sendsms TEXT ' + contact.number + ' -text "' + message + '"';
                 console.log('cmd', cmd);
                 return queue.add(executor(cmd, 2));

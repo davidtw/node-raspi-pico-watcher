@@ -2,6 +2,8 @@ const pico = require('node-raspi-pico-ups').pico;
 const executor = require('./executor');
 const config = require('./contacts.json');
 const Queue = require('promise-queue');
+const Iconv  = require('iconv').Iconv;
+const iconv = new Iconv('UTF-8', 'ISO-8859-1');
 
 const maxConcurrent = 1;
 const intervalTime = 500;
@@ -15,7 +17,9 @@ function sendMessageToContacts(messageCode) {
     if(contacts && contacts.length > 0) {
         contacts.forEach((contact) => {
             if(config['messages'][contact.lang] && config['messages'][contact.lang][messageCode]) {
-                let cmd = 'gammu sendsms TEXT ' + contact.number + ' -text "' + config['messages'][contact.lang][messageCode] + '"';
+                let message = config['messages'][contact.lang][messageCode];
+                message = iconv.convert(message).toString();
+                let cmd = 'gammu sendsms TEXT ' + contact.number + ' -text "' + message + '"';
                 console.log('cmd', cmd);
                 return executor(cmd, 2);
             } else {

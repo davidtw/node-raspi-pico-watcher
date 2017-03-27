@@ -15,6 +15,7 @@ module.exports = (function executor(cmd, retries, tries) {
     });
     return p.catch((error) => {
         if(tries < retries) {
+            console.log('retry', tries);
             return executor(cmd, retries, tries);
         } else {
             console.error(error);

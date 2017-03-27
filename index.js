@@ -3,7 +3,9 @@ const executor = require('./executor');
 const config = require('./contacts.json');
 const Queue = require('promise-queue');
 
+const maxConcurrent = 1;
 const intervalTime = 500;
+const queue = new Queue(maxConcurrent);
 
 let currentMode = pico.getCurrentPowerMode();
 console.log('Starting loop');
@@ -29,7 +31,7 @@ function loop() {
         if (newMode === 2) {
             console.log('Battery mode....');
             clearInterval(interval);
-            Queue.add(sendMessageToContacts('powerDown'))
+            queue.add(sendMessageToContacts('powerDown'))
                 .then(() => {
                     interval = setInterval(loop, intervalTime);
                     return interal;
@@ -37,7 +39,7 @@ function loop() {
                 .catch((err) => console.error(err));
         } else if (newMode !== currentMode) {
             console.log('Power back on...');
-            Queue.add(sendMessageToContacts('powerUp'))
+            queue.add(sendMessageToContacts('powerUp'))
                 .then(() => {
                     interval = setInterval(loop, intervalTime);
                     return interal;

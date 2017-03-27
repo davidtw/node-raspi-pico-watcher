@@ -15,16 +15,18 @@ console.log('Starting loop');
 function sendMessageToContacts(messageCode) {
     let contacts = config['contacts'];
     if(contacts && contacts.length > 0) {
-        contacts.forEach((contact) => {
+        return Promise.all(contacts.map((contact) => {
             if(config['messages'][contact.lang] && config['messages'][contact.lang][messageCode]) {
                 let message = config['messages'][contact.lang][messageCode];
                 let cmd = 'gammu sendsms TEXT ' + contact.number + ' -text "' + message + '"';
                 console.log('cmd', cmd);
                 return queue.add(executor(cmd, 2));
             } else {
-                return Promise.reject('No contacts');
+                return Promise.reject('No message');
             }
-        });
+        }));
+    } else {
+        return Promise.reject('No contacts');
     }
 }
 

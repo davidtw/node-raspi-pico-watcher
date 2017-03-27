@@ -1,7 +1,7 @@
 const pico = require('node-raspi-pico-ups').pico;
-const exec = require('child_process').exec;
-
+const executor = reuire('./executor');
 const config = require('./contacts.json');
+const Queue = reuire('promise-queue');
 
 const intervalTime = 500;
 
@@ -11,17 +11,12 @@ console.log('Starting loop');
 function sendMessageToContacts(messageCode) {
     let contacts = config['contacts'];
     if(contacts && contacts.length > 0) {
-        let nbContacts = 0;
-        clearInterval(interval);
         contacts.forEach((contact) => {
             if(config['messages'][contact.lang] && config['messages'][contact.lang][messageCode]) {
-                exec('gammu sendsms TEXT ' + contact.number + ' -text "' + config['messages'][contact.lang][messageCode] + '"', (error, stdout, stderr) => {
-                    console.log(stdout);
-                    nbContacts++;
-                    if(nbContacts === contacts.length) {
-                        interval = setInterval(loop, intervalTime);
-                    }
-                });
+                let cmd = 'gammu sendsms TEXT ' + contact.number + ' -text "' + config['messages'][contact.lang][messageCode] + '"';
+                return executor(cmd, 2);
+            } else {
+                return Promise.reject('No contacts');
             }
         });
     }
@@ -32,13 +27,24 @@ function loop() {
     if (newMode !== currentMode) {
         if (newMode === 2) {
             console.log('Battery mode....');
-            sendMessageToContacts('powerDown');
+            clearInterval(interval);
+            Queue.add(sendMessageToContacts('powerDown'))
+                .then(() => {
+                    interval = setInterval(loop, intervalTime);
+                    return interal;
+                })
+                .catch((err) => console.error(err));
         } else if (newMode !== currentMode) {
             console.log('Power back on...');
-            sendMessageToContacts('powerUp');
+            Queue.add(sendMessageToContacts('powerUp'))
+                .then(() => {
+                    interval = setInterval(loop, intervalTime);
+                    return interal;
+                })
+                .catch((err) => console.error(err));;
         }
         currentMode = newMode;
     }
 }
-
+sendMessageToContacts('powerUp');
 let interval = setInterval(loop, intervalTime);

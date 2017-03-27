@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/davidtw/node-raspi-pico-watcher#readme",
   "dependencies": {
-    "node-raspi-pico-ups": "^1.0.2"
+    "node-raspi-pico-ups": "^1.0.2",
+    "promise-queue": "^2.2.3"
   }
 }

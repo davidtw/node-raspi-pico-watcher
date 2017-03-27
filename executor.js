@@ -20,4 +20,4 @@ module.exports = (function executor(cmd, retries, tries) {
             throw new Error('Failed after ' + retries + ' retries');
         }
     });
-}());
+});

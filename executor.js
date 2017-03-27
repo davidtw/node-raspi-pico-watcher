@@ -1,9 +1,9 @@
 module.exports = (function executor(cmd, retries, tries) {
     retries = retries || 0;
     tries = tries || 0;
-    const exec = require('child_process').exec;
+    const execSync = require('child_process').execSync;
     let p = new Promise((resolve, reject) => {
-        exec(cmd, (error, stdout, stderr) => {
+        execSync(cmd, (error, stdout, stderr) => {
             ++tries;
             if (error) {
                 console.error(stderr);

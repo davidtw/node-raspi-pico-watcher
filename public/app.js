@@ -53,7 +53,7 @@
             $scope.delete = function (index) {
                 $scope.contacts = _.filter($scope.contacts, function(item, idx) {
                     return idx !== index;
-                }
+                });
             };
             $scope.cancel = function () {
                 $scope.contacts = _.cloneDeep(backup);

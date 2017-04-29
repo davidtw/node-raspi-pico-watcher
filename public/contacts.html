@@ -1,7 +1,21 @@
-<div>
+<form name="contactForm">
     <div class="row" ng-if="loading">
         <div class="progress">
             <div class="indeterminate"></div>
         </div>
     </div>
-</div>
+    <div class="row" ng-repeat="contact in contacts">
+        <div class="input-field col s6">
+            <input id="phone_number" type="text" ng-model="contact.number" class="validate">
+            <label for="phone_number">Phone number</label>
+        </div>
+        <div class="input-field col s6">
+            <select id="lang" ng-model="contact.lang">
+                <option value="" disabled selected>Language</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+            </select>
+            <label for="lang">Language</label>
+        </div>
+    </div>
+</form>

@@ -59,8 +59,8 @@ function startServer() {
     app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
     app.get('/contacts', function (req, res) {
-        let contacts = require('contacts.json');
-        res.json(contacts);
+        let config = require('./contacts.json');
+        res.json(config);
     });
     let server = app.listen(8080, function () {
         let host = server.address().address;

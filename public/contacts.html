@@ -23,12 +23,17 @@
         </div>
     </div>
     <div class="row right-align" ng-if="!contactForm.$pristine && contactForm.$valid">
-        <button class="btn waves-effect waves-light light-blue lighten-5" type="submit" name="action" ng-click="cancel()">Cancel
-            <i class="material-icons right">undo</i>
-        </button>
-        <button class="btn waves-effect waves-light light-blue" type="submit" name="action" ng-click="save()">Save
-            <i class="material-icons right">send</i>
-        </button>
+        <div class="col m6"></div>
+        <div class="col m3">
+            <button class="btn waves-effect waves-light light-blue lighten-5" type="submit" name="action" ng-click="cancel()">Cancel
+                <i class="material-icons right">undo</i>
+            </button>
+        </div>
+        <div class="col m3">
+            <button class="btn waves-effect waves-light light-blue" type="submit" name="action" ng-click="save()">Save
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
     </div>
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large waves-effect waves-light light-blue" ng-click="add()">

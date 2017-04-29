@@ -13,7 +13,12 @@
 </head>
 <body ng-app="smsApp" ng-controller="myCtrl">
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Sms configuration</a>
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">Sms configuration</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">Messages</a></li>
+            </ul>
         </div>
     </nav>
     <div class="section no-pad-bot" id="index-banner">
@@ -27,6 +32,7 @@
     </div>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="app.js"></script>
 </body>

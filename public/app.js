@@ -28,6 +28,7 @@
                 $scope.loading = false;
                 $timeout(function() {
                     $('select').material_select();
+                    Materialize.updateTextFields();
                 });
             });
         }])

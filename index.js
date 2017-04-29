@@ -2,9 +2,13 @@ const pico = require('node-raspi-pico-ups').pico;
 const executor = require('./executor');
 const path = require('path');
 const bodyParser = require('body-parser');
+const _ = require('lodash');
+const jsonfile = require('jsonfile');
 
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+
+const url = path.join(__dirname, "contacts.json");
 
 const maxConcurrent = 1;
 const intervalTime = 500;
@@ -14,7 +18,7 @@ let interval;
 console.log('Starting loop');
 
 function sendMessageToContacts(messageCode) {
-    let config = require('./contacts.json');
+    let config = require(url);
     let contacts = config['contacts'];
     if (contacts && contacts.length > 0) {
         let promise;
@@ -62,13 +66,15 @@ function startServer() {
     app.use(bodyParser.json());
 
     app.get('/contacts', function (req, res) {
-        let config = require('./contacts.json');
+        let config = require(url);
         res.json(config);
     });
     app.put('/contacts', function (req, res) {
-        console.log(req.body);
-        let config = require('./contacts.json');
-        res.json(config);
+        let config = require(url);
+        config.contacts = _.filter(req.body.data);
+        jsonfile.writeFile(url, config, () => {
+            res.json(config.contacts);
+        });
     });
     let server = app.listen(8080, function () {
         let host = server.address().address;

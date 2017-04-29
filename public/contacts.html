@@ -6,11 +6,8 @@
     </div>
     <div class="row" ng-repeat="contact in contacts">
         <div class="input-field col s12 m4">
-            <i class="material-icons right pull-s2">dialpad</i>
-            <div class="push-s10">
-                <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate" required>
-                <label for="phone_number_{{$index}}">Phone number</label>
-            </div>
+            <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate" required>
+            <label for="phone_number_{{$index}}">Phone number</label>
         </div>
         <div class="input-field col s12 m6">
             <select id="lang_{{$index}}" ng-model="contact.lang">

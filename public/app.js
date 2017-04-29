@@ -33,9 +33,18 @@
             });
             $scope.add = function() {
                 $scope.contacts.push({});
+                $timeout(function() {
+                    $('select').material_select();
+                    Materialize.updateTextFields();
+                });
             };
             $scope.save = function() {
                 $scope.loading = true;
+                $http.put('/contacts', {
+                    data: $scope.contacts
+                }).then(function (data) {
+                    console.log(data);
+                });
             };
         }])
         .controller("messagesCtrl", ['$scope', '$http', function($scope, $http) {

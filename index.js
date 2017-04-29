@@ -1,12 +1,13 @@
 const pico = require('node-raspi-pico-ups').pico;
 const executor = require('./executor');
+const path = require('path');
+const bodyParser = require('body-parser');
 
 var express = require('express');
 var app = express();
 
 const maxConcurrent = 1;
 const intervalTime = 500;
-const path = require('path');
 
 let currentMode = pico.getCurrentPowerMode();
 let interval;
@@ -57,8 +58,15 @@ function loop() {
 function startServer() {
     app.use('/', express.static(path.join(__dirname, 'public')));
     app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
 
     app.get('/contacts', function (req, res) {
+        let config = require('./contacts.json');
+        res.json(config);
+    });
+    app.put('/contacts', function (req, res) {
+        console.log(req.body);
         let config = require('./contacts.json');
         res.json(config);
     });

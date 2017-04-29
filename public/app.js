@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module("smsApp", ['ui.router']);
+    let app = angular.module("smsApp", ['ui.router']);
 
     app
         .config(function($stateProvider, $urlRouterProvider) {
@@ -23,7 +23,7 @@
         .controller("contactsCtrl", ['$scope', '$http', function($scope, $http) {
             $scope.loading = true;
             $http.get('/contacts').then(function (data) {
-                $scope.contacts = data.contacts;
+                $scope.contacts = data.data.contacts;
                 $scope.loading = false;
             })
         }])

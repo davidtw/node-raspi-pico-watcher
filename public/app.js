@@ -31,7 +31,9 @@
                 });
             });
             $scope.add = function() {
-                $scope.contacts.push({});
+                $scope.contacts.push({
+                    lang: 'en'
+                });
                 $timeout(function() {
                     $('select').material_select();
                     Materialize.updateTextFields();

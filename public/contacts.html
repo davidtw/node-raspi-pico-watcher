@@ -6,7 +6,7 @@
     </div>
     <div class="row" ng-repeat="contact in contacts">
         <div class="input-field col s12 m6">
-            <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate">
+            <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate" required>
             <label for="phone_number_{{$index}}">Phone number</label>
         </div>
         <div class="input-field col s12 m6">
@@ -17,7 +17,7 @@
             <label for="lang_{{$index}}">Language</label>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="contactForm.$pristine">
         <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="save()">Save
             <i class="material-icons right">send</i>
         </button>

@@ -71,7 +71,9 @@ function startServer() {
     });
     app.put('/contacts', function (req, res) {
         let config = require(url);
-        config.contacts = _.filter(req.body.data);
+        config.contacts = _.filter(req.body.data, (item) => {
+            return !_.isEmpty(item.number) && !_.isEmpty(item.lang);
+        });
         jsonfile.writeFile(url, config, () => {
             res.json(config.contacts);
         });

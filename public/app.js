@@ -51,10 +51,16 @@
                 });
             };
             $scope.delete = function (index) {
-                delete $scope.contacts[index];
+                $scope.contacts = _.filter($scope.contacts, function(item, idx) {
+                    return idx !== index;
+                }
             };
             $scope.cancel = function () {
                 $scope.contacts = _.cloneDeep(backup);
+                $timeout(function() {
+                    $('select').material_select();
+                    Materialize.updateTextFields();
+                });
             };
         }])
         .controller("messagesCtrl", ['$scope', '$http', function($scope, $http) {

@@ -22,8 +22,10 @@
         })
         .controller("contactsCtrl", ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
             $scope.loading = true;
+            let backup;
             $http.get('/contacts').then(function (data) {
                 $scope.contacts = data.data.contacts;
+                backup = _.cloneDeep($scope.contacts);
                 $scope.loading = false;
                 $timeout(function() {
                     $('select').material_select();
@@ -43,9 +45,16 @@
                 $scope.loading = true;
                 $http.put('/contacts', {
                     data: $scope.contacts
-                }).then(function (data) {
-                    console.log(data);
+                }).then(function () {
+                    backup = _.cloneDeep($scope.contacts);
+                    $scope.contactForm.$setPristine();
                 });
+            };
+            $scope.delete = function (index) {
+                delete $scope.contacts[index];
+            };
+            $scope.cancel = function () {
+                $scope.contacts = _.cloneDeep(backup);
             };
         }])
         .controller("messagesCtrl", ['$scope', '$http', function($scope, $http) {

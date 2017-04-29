@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row" ng-repeat="contact in contacts">
-        <div class="input-field col s12 m6">
+        <div class="input-field col s12 m4">
             <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate" required>
             <label for="phone_number_{{$index}}">Phone number</label>
         </div>
@@ -16,14 +16,22 @@
             </select>
             <label for="lang_{{$index}}">Language</label>
         </div>
+        <div class="input-field col s12 m6">
+            <a ng-click="delete($index)">
+                <i class="material-icons">delete</i>
+            </a>
+        </div>
     </div>
     <div class="row" ng-if="!contactForm.$pristine && contactForm.$valid">
-        <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="save()">Save
+        <button class="btn waves-effect waves-light light-blue lighten-5" type="submit" name="action" ng-click="cancel()">Cancel
+            <i class="material-icons right">undo</i>
+        </button>
+        <button class="btn waves-effect waves-light light-blue" type="submit" name="action" ng-click="save()">Save
             <i class="material-icons right">send</i>
         </button>
     </div>
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large waves-effect waves-light red" ng-click="add()">
+        <a class="btn-floating btn-large waves-effect waves-light light-blue" ng-click="add()">
             <i class="material-icons">add</i>
         </a>
     </div>

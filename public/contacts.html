@@ -6,8 +6,11 @@
     </div>
     <div class="row" ng-repeat="contact in contacts">
         <div class="input-field col s12 m4">
-            <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate" required>
-            <label for="phone_number_{{$index}}"><i class="material-icons right">dialpad</i> Phone number</label>
+            <i class="material-icons right pull-s2">dialpad</i>
+            <div class="push-s10">
+                <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate" required>
+                <label for="phone_number_{{$index}}">Phone number</label>
+            </div>
         </div>
         <div class="input-field col s12 m6">
             <select id="lang_{{$index}}" ng-model="contact.lang">
@@ -25,7 +28,8 @@
     <div class="row right-align" ng-if="!contactForm.$pristine && contactForm.$valid">
         <div class="col m8"></div>
         <div class="col m2">
-            <button class="btn waves-effect waves-light light-blue lighten-5" type="submit" name="action" ng-click="cancel()">Cancel
+            <button class="btn waves-effect waves-light light-blue lighten-5" type="submit" name="action"
+                    ng-click="cancel()">Cancel
                 <i class="material-icons right">undo</i>
             </button>
         </div>

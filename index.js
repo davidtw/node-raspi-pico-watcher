@@ -6,6 +6,7 @@ var app = express();
 
 const maxConcurrent = 1;
 const intervalTime = 500;
+const path = require('path');
 
 let currentMode = pico.getCurrentPowerMode();
 let interval;
@@ -54,7 +55,8 @@ function loop() {
 }
 
 function startServer() {
-    app.use(express.static('public'));
+    app.use('/', express.static(path.join(__dirname, 'public')));
+    app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
     let server = app.listen(8080, function () {
         let host = server.address().address;
@@ -64,6 +66,7 @@ function startServer() {
     })
 }
 
+startServer();
 setTimeout(() => {
     sendMessageToContacts('start');
     startListening();

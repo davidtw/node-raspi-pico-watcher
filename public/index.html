@@ -11,19 +11,21 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
+<body ng-app="smsApp">
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#">Navbar Link</a></li>
-            </ul>
-
-            <ul id="nav-mobile" class="side-nav">
-                <li><a href="#">Navbar Link</a></li>
-            </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Sms configuration</a>
         </div>
     </nav>
-    <script type="text/javascript" src="/node_modules/materialize/dist/js/materialize.min.js"></script>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <div class="row" ng-if="loading">
+                <div class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/materialize/dist/js/materialize.min.js"></script>
 </body>
 </html>

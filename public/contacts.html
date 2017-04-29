@@ -1,21 +1,20 @@
-<form name="contactForm">
+<form name="contactForm" class="col s12 m12">
     <div class="row" ng-if="contactsCtrl.loading">
         <div class="progress">
             <div class="indeterminate"></div>
         </div>
     </div>{{contacts.length}}
     <div class="row" ng-repeat="contact in contacts">
-        <div class="input-field col s6">
-            <input id="phone_number" type="text" ng-model="contact.number" class="validate">
-            <label for="phone_number">Phone number</label>
+        <div class="input-field col s12 m6">
+            <input id="phone_number_{{$index}}" type="text" ng-model="contact.number" class="validate">
+            <label for="phone_number_{{$index}}">Phone number</label>
         </div>
-        <div class="input-field col s6">
-            <select id="lang" ng-model="contact.lang">
-                <option value="" disabled selected>Language</option>
+        <div class="input-field col s12 m6">
+            <select id="lang_{{$index}}" ng-model="contact.lang">
                 <option value="en">English</option>
                 <option value="fr">Français</option>
             </select>
-            <label for="lang">Language</label>
+            <label for="lang_{{$index}}">Language</label>
         </div>
     </div>
 </form>

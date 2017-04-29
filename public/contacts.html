@@ -7,7 +7,7 @@
     <div class="row" ng-repeat="contact in contacts">
         <div class="input-field col s12 m4">
             <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate" required>
-            <label for="phone_number_{{$index}}">Phone number</label>
+            <label for="phone_number_{{$index}}"><i class="material-icons right">dialpad</i> Phone number</label>
         </div>
         <div class="input-field col s12 m6">
             <select id="lang_{{$index}}" ng-model="contact.lang">

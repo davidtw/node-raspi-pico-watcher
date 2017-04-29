@@ -3,10 +3,10 @@
         <div class="progress">
             <div class="indeterminate"></div>
         </div>
-    </div>{{contacts.length}}
+    </div>
     <div class="row" ng-repeat="contact in contacts">
         <div class="input-field col s12 m6">
-            <input id="phone_number_{{$index}}" type="text" ng-model="contact.number" class="validate">
+            <input id="phone_number_{{$index}}" type="tel" ng-model="contact.number" class="validate">
             <label for="phone_number_{{$index}}">Phone number</label>
         </div>
         <div class="input-field col s12 m6">

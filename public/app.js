@@ -20,13 +20,15 @@
             $stateProvider.state(messagesState);
             $urlRouterProvider.otherwise('/contacts');
         })
-        .controller("contactsCtrl", ['$scope', '$http', function($scope, $http) {
+        .controller("contactsCtrl", ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
             $scope.loading = true;
             $http.get('/contacts').then(function (data) {
                 $scope.contacts = data.data.contacts;
                 $scope.contacts.push({});
                 $scope.loading = false;
-                $('select').material_select();
+                $timeout(function() {
+                    $('select').material_select();
+                });
             });
         }])
         .controller("messagesCtrl", ['$scope', '$http', function($scope, $http) {

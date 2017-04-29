@@ -26,7 +26,8 @@
                 $scope.contacts = data.data.contacts;
                 $scope.contacts.push({});
                 $scope.loading = false;
-            })
+                $('select').material_select();
+            });
         }])
         .controller("messagesCtrl", ['$scope', '$http', function($scope, $http) {
 

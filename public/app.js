@@ -31,6 +31,12 @@
                     Materialize.updateTextFields();
                 });
             });
+            $scope.add = function() {
+                $scope.contacts.push({});
+            };
+            $scope.save = function() {
+                $scope.loading = true;
+            };
         }])
         .controller("messagesCtrl", ['$scope', '$http', function($scope, $http) {
 

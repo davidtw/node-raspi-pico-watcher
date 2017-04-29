@@ -17,7 +17,7 @@
             <label for="lang_{{$index}}">Language</label>
         </div>
     </div>
-    <div class="row" ng-if="!contactForm.$pristine">
+    <div class="row" ng-if="!contactForm.$pristine && contactForm.$valid">
         <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="save()">Save
             <i class="material-icons right">send</i>
         </button>

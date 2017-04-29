@@ -1,6 +1,9 @@
 const pico = require('node-raspi-pico-ups').pico;
 const executor = require('./executor');
 
+var express = require('express');
+var app = express();
+
 const maxConcurrent = 1;
 const intervalTime = 500;
 
@@ -49,6 +52,18 @@ function loop() {
         currentMode = newMode;
     }
 }
+
+function startServer() {
+    app.use(express.static('public'));
+
+    let server = app.listen(8080, function () {
+        let host = server.address().address;
+        let port = server.address().port;
+
+        console.log("Example app listening at http://%s:%s", host, port);
+    })
+}
+
 setTimeout(() => {
     sendMessageToContacts('start');
     startListening();

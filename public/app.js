@@ -57,6 +57,7 @@
             };
             $scope.cancel = function () {
                 $scope.contacts = _.cloneDeep(backup);
+                $scope.contactForm.$setPristine();
                 $timeout(function() {
                     $('select').material_select();
                     Materialize.updateTextFields();

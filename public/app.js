@@ -28,6 +28,6 @@
             })
         }])
         .controller("messagesCtrl", ['$scope', '$http', function($scope, $http) {
-            
+
         }]);
 }());

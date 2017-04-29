@@ -1,6 +1,5 @@
 const pico = require('node-raspi-pico-ups').pico;
 const executor = require('./executor');
-const config = require('./contacts.json');
 
 const maxConcurrent = 1;
 const intervalTime = 500;
@@ -10,6 +9,7 @@ let interval;
 console.log('Starting loop');
 
 function sendMessageToContacts(messageCode) {
+    let config = require('./contacts.json');
     let contacts = config['contacts'];
     if (contacts && contacts.length > 0) {
         let promise;
@@ -49,8 +49,10 @@ function loop() {
         currentMode = newMode;
     }
 }
-sendMessageToContacts('start');
-startListening();
-function startListening() {
-    interval = setInterval(loop, intervalTime);
-}
+setTimeout(() => {
+    sendMessageToContacts('start');
+    startListening();
+    function startListening() {
+        interval = setInterval(loop, intervalTime);
+    }
+}, 5000);

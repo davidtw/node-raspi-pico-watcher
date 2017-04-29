@@ -24,7 +24,6 @@
             $scope.loading = true;
             $http.get('/contacts').then(function (data) {
                 $scope.contacts = data.data.contacts;
-                $scope.contacts.push({});
                 $scope.loading = false;
                 $timeout(function() {
                     $('select').material_select();
